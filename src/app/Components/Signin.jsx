@@ -18,10 +18,17 @@ const SignForm = () => {
     useEffect(() => {
         let userData = localStorage.getItem("username");
         if (userData) {
-            router.push("/Home");
+            router.push("/");
         }
     }, [router]);
 
+    useEffect(()=>{
+        let login = localStorage.getItem("login");
+        if(login){
+            setIsSignUp(true);
+            localStorage.removeItem("login");
+        }
+    },[])
 
     // data which is used for login purpose
     const [logindata, setloginData] = useState({
@@ -76,7 +83,7 @@ const SignForm = () => {
             localStorage.setItem('username', JSON.stringify(result.user));
 
             //redirects to home page
-            router.push("/Home");
+            router.push("/");
         } catch (error) {
 
             //error handling
@@ -138,7 +145,7 @@ const SignForm = () => {
             localStorage.setItem('username', JSON.stringify(result.user));
 
             //redirects to home page
-            router.push("/Home");
+            router.push("/");
         } catch (error) {
             //error handling
             toast.error("Something went wrong !!..", {

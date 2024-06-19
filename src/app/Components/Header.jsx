@@ -56,14 +56,25 @@ const Header = () => {
 
     //function to push user to home page 
     const gotohome = () => {
-        router.push("/Home");
+        router.push("/");
+    }
+
+
+    //use to move to loginpage and if we will click on login then sets login as 1 so that we can know that user wants to login and we will directly show them loginin form as by default form is signup in our code
+
+    const gotologin=(num)=>{
+        if (num === 1) {
+            localStorage.setItem('login', num);
+        }
+
+        router.push("/Signinpage");
     }
 
     //function use to logout user means it will redirect to mainpage
     const logout = () => {
         localStorage.removeItem("username");
         setlogin(false);
-        router.push("/");
+        router.push("/Signinpage");
     }
 
     const handleNavToggle = () => setNavActive(!navActive); //just toggles the value of nacActive to achieve desired css when required
@@ -77,16 +88,16 @@ const Header = () => {
                 <div className=' font-bold '>
                     <ul className={`${styles.navbar} ${navActive ? styles.active : ''}`}>
                         <li className="cursor-pointer" onClick={gotohome}  ><>Home</></li>
-                        <li className="cursor-pointer"  ><>About Us</></li>
                         <li className="cursor-pointer"  ><>Mens</></li>
                         <li className="cursor-pointer"  ><>Womens</></li>
                         <li className="cursor-pointer"  ><>Childrens</></li>
+                        <li className="cursor-pointer"  ><>Cart</></li>
                         {/* conditional rendering on basis of login  */}
                         {
-                            login ? <li className="cursor-pointer"  ><>Cart</></li> : <li className="cursor-pointer"  ><>Login</></li>
+                            login ? <li className="cursor-pointer"  ><>Cart</></li> : <li className="cursor-pointer" onClick={ ()=>gotologin(1) } ><>Login</></li>
                         }
                         {
-                            login ? <li className="cursor-pointer" onClick={logout} ><>Logout</></li> : <li className="cursor-pointer"  ><>Signup</></li>
+                            login ? <li className="cursor-pointer" onClick={logout} ><>Logout</></li> : <li className="cursor-pointer" onClick={ ()=>gotologin(0) }  ><>Signup</></li>
                         }
                         <a href="#" onClick={handleNavToggle} className={styles.close}>
                             <div className="bg-red-700 rounded-full p-1 w-7 h-7 flex items-center justify-center">
