@@ -1,4 +1,5 @@
 import { ConnectDb } from "@/app/helper/db";
+import { User } from "@/app/models/usermodel";
 import { NextResponse } from "next/server";
 
 ConnectDb();

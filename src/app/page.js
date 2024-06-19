@@ -6,13 +6,10 @@ import SignForm from "./Components/Signin";
 export default function Home() {
   return (
     <main >
-
       <Navbar />
-
       <div className="flex justify-center py-10">
         <SignForm />
       </div>
-      
     </main>
   );
 }
