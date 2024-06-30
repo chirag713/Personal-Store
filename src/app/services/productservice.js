@@ -14,6 +14,11 @@ export async function productget(x , y) {
   return result
 }
 
+export async function productgetsingle(x ) {
+  const result = await httpaxious.get(`/api/product/usedfor/${x}`).then((response) => response.data);
+  return result
+}
+
 export async function singleproductget(x ) {
   const result = await httpaxious.get(`/api/product/${x}`).then((response) => response.data);
   return result
